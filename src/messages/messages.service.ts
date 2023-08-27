@@ -1,13 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import { MessagesRepository } from './messages.repository';
 
+@Injectable()
 export class MessagesService {
-  messagesRepository: MessagesRepository;
-
-  constructor() {
-    // 一時的にDIを使わずに依存関係を作り実装
-    // 後で削除する
-    this.messagesRepository = new MessagesRepository();
-  }
+  constructor(public messagesRepository: MessagesRepository) {}
 
   findOne(id: string) {
     return this.messagesRepository.findOne(id);
